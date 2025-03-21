@@ -28,19 +28,18 @@ def compute_relations(sets, relation_type):
     return {"relations": relations, "is_identity": is_identity if relation_type == "transitive" else False}
 
 definitions = {
-    "void": "An empty relation where no elements are related.",
-    "identity": "A relation where every element is related only to itself.",
-    "universal": "A relation where every element is related to every other element, including itself.",
-    "reflexive": "A relation where every element is related to itself.",
-    "symmetric": "A relation where if one element is related to another, the reverse is also true.",
-    "transitive": "A relation where if one element is related to a second, and the second to a third, then the first is related to the third."
-}
+    "void": "A relation R in a set A is called an empty or void relation if no element of A is related to any element of A.",
+    "universal": "A relation R in a set A is called a universal relation if every element of A is related to each element of A.",
+    "identity": "A relation R in a set A is called an identity relation if every element of A is related to itself only.",
+    "reflexive": "A relation R in a set A is called a reflexive relation if every element of A is related to itself.",
+    "symmetric": "A relation R in a set A is called a symmetric relation if (a, b) ∈ R ⇒ (b, a) ∈ R for all a, b ∈ A.",
+    "transitive": "A relation R in a set A is called a transitive relation if (a,b) not ∈ R & (b,c) ∈ R ⇒ (a,c) ∈ R"}
 
 def get_notes(relation_type):
     notes = {
         "identity": ["Every identity relation is symmetric.", "Every identity relation is reflexive."],
-        "symmetric": ["Every symmetric relation is not an identity relation.", "Symmetric relations may or may not be reflexive."],
         "reflexive": ["Every reflexive relation is not symmetric.", "Every identity relation is reflexive."],
+        "symmetric": ["Every symmetric relation is not an identity relation.", "Symmetric relations may or may not be reflexive."],
         "transitive": ["Transitive relations may not be symmetric or reflexive."],
         "universal": ["Every universal relation is reflexive and symmetric.", "Universal relations are transitive."],
         "void": ["Void relations are symmetric and transitive but not reflexive."]
@@ -85,3 +84,6 @@ def index():
 
         return jsonify(results)
     return render_template("index.html")
+
+if __name__ == "__main__":
+    app.run(debug=True)
